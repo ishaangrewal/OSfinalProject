@@ -1,4 +1,17 @@
 #include "libc.h"
+/*
+command ideas:
+cat
+grep
+sort
+wc
+ls
+cd
+pwd
+locate?
+
+*/
+
 
 /*
 input:

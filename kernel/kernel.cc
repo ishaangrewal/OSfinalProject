@@ -35,10 +35,10 @@ void kernelMain(void) {
     auto fs = Shared<Ext2>::make(d);
     auto root = checkDir("/",fs->root);
     auto sbin = getDir(fs,root,"sbin");
-    auto init = getFile(fs,sbin,"init");
+    auto shell = getFile(fs,sbin,"shell");
 
-    Debug::printf(" loading init\n");
-    uint32_t e = ELF::load(init);
+    Debug::printf(" loading shell\n");
+    uint32_t e = ELF::load(shell);
     Debug::printf("entry %x\n",e);
     //auto userEsp = K::min(kConfig.ioAPIC,kConfig.localAPIC);
     uint32_t* userEsp = (uint32_t*) 0xefffe000;

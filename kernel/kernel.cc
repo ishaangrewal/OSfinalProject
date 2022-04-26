@@ -42,18 +42,18 @@ void kernelMain(void) {
     Debug::printf("entry %x\n",e);
     //auto userEsp = K::min(kConfig.ioAPIC,kConfig.localAPIC);
     uint32_t* userEsp = (uint32_t*) 0xefffe000;
-    *userEsp = 0;
+    userEsp[0] = 0;
     userEsp--;
     uint32_t pointer = (uint32_t)userEsp;
     memcpy(userEsp, "init", 4);
     userEsp--;
-    *userEsp = 0;
+    userEsp[0] = 0;
     userEsp--;
-    *userEsp = pointer;
+    userEsp[0] = pointer;
     userEsp--;
-    *userEsp = (uint32_t)(userEsp + 1);
+    userEsp[0] = (uint32_t)(userEsp + 1);
     userEsp--;
-    *userEsp = 1;
+    userEsp[0] = 1;
 
     Debug::printf("user esp %x\n",userEsp);
     // Current state:

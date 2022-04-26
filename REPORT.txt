@@ -1,14 +1,33 @@
 - Describe how you keep track of open file offsets
 
+We keep track of open file offsets to keep as cursors so that we can continue reading a file with following reads.
+We have an offset variable in our file descriptor struct that keeps track of the starting point needed for any reads from that file.
+
 - Explain why it's a good idea to copy the exec args in kernel space
   before performing the exec
 
+The ELF file gets loaded in which overrides user space and user memory. We also clear our private memory as well.
+We save it to the kernel heap to access it later when the virtual address space gets cleared out.
+
 - List 3 security exposures that your implementation of exec addressed
+
+1. Clear out virtual memory to prevent unauthorized access to the private memory of the process earlier.
+   if left uncleared, a malicious user could use the new process to access memory of the older processes. 
+2. Clear out semaphores. Clearing out semaphores to prevent allowing someone elses semaphore and make them wait forever.
+3. Clear out children processess. You could mess with the child processes of the previous processes if we did not clear.
 
 - Read about the opendir system call. Why do we need a dedicated system
   call for opening directories? Why not just open a directory as if it
   were a file and look at its internal representation?
 
+A directory is different from a file, a directory doesn't specifically have data to show but rather a collection of directly and indirectly representable data. 
+Opendir returns a pointer to a directory stream and calls open on the contents of the files. 
+Additionally we can have symbolic links that a directory can follow.
+
 - We implement the open, close, read, and write system calls. All
   Unix-like systems have corresponding higher level library
   functions: fopen, fclose, fread, and fwrite. How come?
+
+Library calls don't touch the kernel and only communicate to the user program. 
+So there is no way for them to directly have system calls. This adds a level of abstraction and seperation from the kernel.
+library calls have more abstractions for more complex user programs. 

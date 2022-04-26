@@ -33,7 +33,51 @@ int main(int argc, char** argv) {
     printf("*** - - - Good Luck\n");
     while (1) // replace with shell exit check
     {
-        
+        int id = fork();
+        if (id < 0) {
+            printf("fork failed");
+        } else if (id == 0) {
+            /* ls */
+            printf("*** ls implementation\n");
+            exit(0);
+            //int rc = execl("/sbin/shell","shell","a","b","c",0);
+            //printf("*** execl failed, rc = %d\n",rc);
+        } else {
+            /* parent */
+            uint32_t status = 42;
+            wait(id,&status);
+            printf("*** back to shell\n");
+        }
+        id = fork();
+        if (id < 0) {
+            printf("fork failed");
+        } else if (id == 0) {
+            /* ls */
+            printf("*** cd implementation\n");
+            exit(0);
+            //int rc = execl("/sbin/shell","shell","a","b","c",0);
+            //printf("*** execl failed, rc = %d\n",rc);
+        } else {
+            /* parent */
+            uint32_t status = 42;
+            wait(id,&status);
+            printf("*** back to shell\n");
+        }
+        id = fork();
+        if (id < 0) {
+            printf("fork failed");
+        } else if (id == 0) {
+            /* ls */
+            printf("*** pwd implementation\n");
+            exit(0);
+            //int rc = execl("/sbin/shell","shell","a","b","c",0);
+            //printf("*** execl failed, rc = %d\n",rc);
+        } else {
+            /* parent */
+            uint32_t status = 42;
+            wait(id,&status);
+            printf("*** back to shell\n");
+        }
+        shutdown();
     }
-    
 }

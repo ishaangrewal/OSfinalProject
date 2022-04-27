@@ -1,2 +1,0 @@
-*** this line should print
-*** this line should not print

@@ -5,8 +5,8 @@ iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+07F8F290+07EEF290 CA00
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Booting from Hard Disk..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
+xxxxxxxxx
 | What just happened? Why am I here?
 | Discovering my identity and features
 |     CPUID: AuthenticAMD
@@ -22,8 +22,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | physical range 0x600000 0x7fd0000
 | pitInit freq 1000Hz
 | pitInit divider 59659
-| APIT running at 1000054370Hz
-| APIT counter=1000054 for 1000Hz
+| APIT running at 1000087819Hz
+| APIT counter=1000087 for 1000Hz
 | initialize 1
 | reset 1
 |      eip:0x8000
@@ -31,16 +31,16 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | reset 2
 |      eip:0x8000
 | initialize 3
-| reset 3
-|      eip:0x8000
 | initializing TSS:ss0 for 1
-| initializing TSS:ss0 for 3
-| 3 enabling interrupts, I'm scared
-| initializing TSS:ss0 for 0
-| 0 enabling interrupts, I'm scared
 | initializing TSS:ss0 for 2
 | 2 enabling interrupts, I'm scared
 | 1 enabling interrupts, I'm scared
+| reset 3
+|      eip:0x8000
+| initializing TSS:ss0 for 0
+| 0 enabling interrupts, I'm scared
+| initializing TSS:ss0 for 3
+| 3 enabling interrupts, I'm scared
 mounting drive 1
 checking /
 directory / is ok
@@ -48,28 +48,49 @@ checking sbin
 directory sbin is ok
 file shell is ok
  loading shell
-entry 800001d6
+entry 80000205
 user esp efffdfec
 *** - - - Welcome to our shell
 *** - - - Good Luck
-*** ls implementation
+*** echo implementation
+/data/data.txt
 *** back to shell
-*** cd implementation
+*** cat implementation
+*** this is nice
+*** we can read
+*** this is nice
+*** we can read and write
+*** Don't panic
+*** 
+*** 
+***                          oooo$$$$$$$$$$$$oooo
+***                       oo$$$$$$$$$$$$$$$$$$$$$$$$o
+***                    oo$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o         o$   $$ o$
+***    o $ oo        o$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o       $$ $$ $$o$
+*** oo $ $ "$      o$$$$$$$$$    $$$$$$$$$$$$$    $$$$$$$$$o       $$$o$$o$
+*** "$$$$$$o$     o$$$$$$$$$      $$$$$$$$$$$      $$$$$$$$$$o    $$$$$$$$
+***   $$$$$$$    $$$$$$$$$$$      $$$$$$$$$$$      $$$$$$$$$$$$$$$$$$$$$$$
+***   $$$$$$$$$$$$$$$$$$$$$$$    $$$$$$$$$$$$$    $$$$$$$$$$$$$$  """$$$
+***    "$$$""""$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     "$$$
+***     $$$   o$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     "$$$o
+***    o$$"   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$       $$$o
+***    $$$    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" "$$$$$$ooooo$$$$o
+***   o$$$oooo$$$$$  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   o$$$$$$$$$$$$$$$$$
+***   $$$$$$$$"$$$$   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     $$$$""""""""
+***  """"       $$$$    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$"      o$$$
+***             "$$$o     """$$$$$$$$$$$$$$$$$$"$$"         $$$
+***               $$$o          "$$""$$$$$$""""           o$$$
+***                $$$$o                                o$$$"
+***                 "$$$$o      o$$$$$$o"$$$$o        o$$$$
+***                   "$$$$$oo     ""$$$$o$$$$$o   o$$$$""
+***                      ""$$$$$oooo  "$$$o$$$$$$$$$"""
+***                         ""$$$$$$$oo $$$$$$$$$$
+***                                 """"$$$$$$$$$$$
+***                                     $$$$$$$$$$$$
+***                                      $$$$$$$$$$"
+***                                       "$$$""  
+*** 
 *** back to shell
 *** pwd implementation
 *** back to shell
-*** ls implementation
-*** back to shell
-*** cd implementation
-*** back to shell
-*** pwd implementation
-*** back to shell
-*** ls implementation
-*** back to shell
-*** cd implementation
-*** back to shell
-*** pwd implementation
-*** back to shell
-*** ls implementation
-*** back to shell
-fork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedfork failedout of memory| processor 2 halting
+core 2 requested shutdown

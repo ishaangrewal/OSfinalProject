@@ -1,4 +1,17 @@
 #include "libc.h"
+/*
+command ideas:
+cat
+grep
+sort
+wc
+ls
+cd
+pwd
+locate?
+
+*/
+
 
 /*
 input:
@@ -38,10 +51,9 @@ int main(int argc, char** argv) {
             printf("fork failed");
         } else if (id == 0) {
             /* ls */
-            printf("*** ls implementation\n");
+            int rc = execl("/sbin/echo","echo","/data/data.txt",0);
             exit(0);
-            //int rc = execl("/sbin/shell","shell","a","b","c",0);
-            //printf("*** execl failed, rc = %d\n",rc);
+            printf("*** execl failed, rc = %d\n",rc);
         } else {
             /* parent */
             uint32_t status = 42;
@@ -53,10 +65,9 @@ int main(int argc, char** argv) {
             printf("fork failed");
         } else if (id == 0) {
             /* ls */
-            printf("*** cd implementation\n");
+            int rc = execl("/sbin/cat","cat","/data/data.txt", "/etc/data.txt", "/data/panic.txt", 0);
+            printf("*** execl failed, rc = %d\n",rc);
             exit(0);
-            //int rc = execl("/sbin/shell","shell","a","b","c",0);
-            //printf("*** execl failed, rc = %d\n",rc);
         } else {
             /* parent */
             uint32_t status = 42;

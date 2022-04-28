@@ -29,7 +29,9 @@
 > *** argv[3]=c
 > *** we can read and write
 > *** back from wait 666
-40,42d53
+40,44d53
 < *** back to shell
 < *** grep implementation
+< *** back to shell
+< *** wc implementation
 < *** back to shell

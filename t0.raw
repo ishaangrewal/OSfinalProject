@@ -5,8 +5,8 @@ iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+07F8F290+07EEF290 CA00
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..xxxxxx.
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Booting from Hard Disk..xx.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | What just happened? Why am I here?
 | Discovering my identity and features
 |     CPUID: AuthenticAMD
@@ -22,25 +22,25 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | physical range 0x600000 0x7fd0000
 | pitInit freq 1000Hz
 | pitInit divider 59659
-| APIT running at 1000051353Hz
-| APIT counter=1000051 for 1000Hz
+| APIT running at 1000135544Hz
+| APIT counter=1000135 for 1000Hz
 | initialize 1
 | reset 1
 |      eip:0x8000
 | initialize 2
 | reset 2
 |      eip:0x8000
+| initializing TSS:ss0 for 1
+| 1 enabling interrupts, I'm scared
 | initialize 3
 | reset 3
 |      eip:0x8000
 | initializing TSS:ss0 for 2
-| initializing TSS:ss0 for 1
-| 1 enabling interrupts, I'm scared
 | 2 enabling interrupts, I'm scared
 | initializing TSS:ss0 for 3
-| 3 enabling interrupts, I'm scared
 | initializing TSS:ss0 for 0
 | 0 enabling interrupts, I'm scared
+| 3 enabling interrupts, I'm scared
 mounting drive 1
 checking /
 directory / is ok
@@ -48,7 +48,7 @@ checking sbin
 directory sbin is ok
 file shell is ok
  loading shell
-entry 80000232
+entry 800002b3
 user esp efffdfec
 *** - - - Welcome to our shell
 *** - - - Good Luck
@@ -97,4 +97,7 @@ is
 nice
 write
 *** back to shell
-core 1 requested shutdown
+*** wc implementation
+2 10 33 /etc/data.txt
+*** back to shell
+core 3 requested shutdown

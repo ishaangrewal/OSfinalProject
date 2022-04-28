@@ -78,11 +78,10 @@ int main(int argc, char** argv) {
         if (id < 0) {
             printf("fork failed");
         } else if (id == 0) {
-            /* ls */
-            printf("*** pwd implementation\n");
+            //grep
+            int rc = execl("/sbin/grep","grep", "i", "/etc/data.txt", 0);
+            printf("*** execl failed, rc = %d\n",rc);
             exit(0);
-            //int rc = execl("/sbin/shell","shell","a","b","c",0);
-            //printf("*** execl failed, rc = %d\n",rc);
         } else {
             /* parent */
             uint32_t status = 42;

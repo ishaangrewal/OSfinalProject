@@ -6,6 +6,8 @@ int main(int argc, char** argv) {
         char *buff = malloc(len(fd));
         read(fd, buff, len(fd));
         write(1, buff, len(fd));
+        free(buff);
     }
+
     return 0;
 }

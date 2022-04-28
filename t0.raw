@@ -5,8 +5,8 @@ iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+07F8F290+07EEF290 CA00
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
-xxxxxxxxx
+Booting from Hard Disk..xxxxxx.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | What just happened? Why am I here?
 | Discovering my identity and features
 |     CPUID: AuthenticAMD
@@ -22,8 +22,8 @@ xxxxxxxxx
 | physical range 0x600000 0x7fd0000
 | pitInit freq 1000Hz
 | pitInit divider 59659
-| APIT running at 1000087819Hz
-| APIT counter=1000087 for 1000Hz
+| APIT running at 1000051353Hz
+| APIT counter=1000051 for 1000Hz
 | initialize 1
 | reset 1
 |      eip:0x8000
@@ -31,16 +31,16 @@ xxxxxxxxx
 | reset 2
 |      eip:0x8000
 | initialize 3
-| initializing TSS:ss0 for 1
-| initializing TSS:ss0 for 2
-| 2 enabling interrupts, I'm scared
-| 1 enabling interrupts, I'm scared
 | reset 3
 |      eip:0x8000
-| initializing TSS:ss0 for 0
-| 0 enabling interrupts, I'm scared
+| initializing TSS:ss0 for 2
+| initializing TSS:ss0 for 1
+| 1 enabling interrupts, I'm scared
+| 2 enabling interrupts, I'm scared
 | initializing TSS:ss0 for 3
 | 3 enabling interrupts, I'm scared
+| initializing TSS:ss0 for 0
+| 0 enabling interrupts, I'm scared
 mounting drive 1
 checking /
 directory / is ok
@@ -48,7 +48,7 @@ checking sbin
 directory sbin is ok
 file shell is ok
  loading shell
-entry 80000205
+entry 80000232
 user esp efffdfec
 *** - - - Welcome to our shell
 *** - - - Good Luck
@@ -91,6 +91,10 @@ user esp efffdfec
 ***                                       "$$$""  
 *** 
 *** back to shell
-*** pwd implementation
+*** grep implementation
+this
+is
+nice
+write
 *** back to shell
-core 2 requested shutdown
+core 1 requested shutdown

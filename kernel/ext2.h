@@ -175,6 +175,11 @@ public:
         data.show(msg);
     }
 
+    void get_dir_entries(char *buffer);
+
+    uint32_t get_length_of_dir_entries();
+
+
     template <typename Work>
     void entries(Work work) {
         ASSERT(is_dir());

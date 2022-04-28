@@ -24,6 +24,14 @@ extern int open(const char* fn, int flags);
 /* returns number of bytes in the file, negative indicates error or a console device */
 extern ssize_t len(int fd);
 
+/* dirlen */
+/* returns number of bytes in the names of the files */
+extern ssize_t dirlen(int fd);
+
+extern int readdir(int fd, char* buff);
+
+
+
 /* write */
 /* writes up to 'nbytes' to file, returns number of bytes written */
 extern ssize_t write(int fd, void* buf, size_t nbyte);

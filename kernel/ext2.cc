@@ -135,6 +135,48 @@ void Node::get_symbol(char* buffer) {
     }
 }
 
+// new function that gets a string array of directory entry names.
+void Node::get_dir_entries(char *buffer) {
+    ASSERT(is_dir());
+
+    uint32_t offset = 0;
+    uint32_t nameOffset = 0;
+        while (offset < data.size_low) {
+            uint16_t total_size;
+            read(offset+4,total_size);
+            uint8_t name_length;
+            read(offset+6,name_length);
+            auto name = new char[name_length+1];
+            name[name_length] = 0;
+            auto cnt = read_all(offset+8,name_length,name);
+            ASSERT(cnt == name_length);
+            memcpy(buffer+nameOffset,name,name_length);
+            nameOffset += name_length;
+            //add a space after the name
+            buffer[nameOffset] = ' ';
+            nameOffset++;
+            delete[] name;
+            offset += total_size;
+        }
+    buffer[nameOffset - 1] = '\n';
+}
+
+uint32_t Node::get_length_of_dir_entries() {
+    ASSERT(is_dir());
+    uint32_t offset = 0;
+    uint32_t namesSize = 0;
+    while (offset < data.size_low) {
+        uint16_t total_size;
+        read(offset+4,total_size);
+        uint8_t name_length;
+        read(offset+6,name_length);
+        offset += total_size;
+        namesSize += name_length + 1;
+        // Debug::printf("name_length %d\n",name_length);
+    }
+    return namesSize;
+}
+
 void Node::read_block(uint32_t index, char* buffer) {
     ASSERT(index < data.n_sectors / (block_size / 512));
 

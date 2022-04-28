@@ -13,6 +13,7 @@ locate?
 */
 
 
+
 /*
 input:
     -keyboard input
@@ -94,6 +95,20 @@ int main(int argc, char** argv) {
         } else if (id == 0) {
             // wc
             int rc = execl("/sbin/wc","wc", "/etc/data.txt", 0);
+            printf("*** execl failed, rc = %d\n",rc);
+            exit(0);
+        } else {
+            /* parent */
+            uint32_t status = 42;
+            wait(id,&status);
+            printf("*** back to shell\n");
+        }
+        id = fork();
+        if (id < 0) {
+            printf("fork failed");
+        } else if (id == 0) {
+            // ls
+            int rc = execl("/sbin/ls","ls", "/etc", 0);
             printf("*** execl failed, rc = %d\n",rc);
             exit(0);
         } else {

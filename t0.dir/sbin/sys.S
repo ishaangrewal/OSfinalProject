@@ -99,10 +99,24 @@ len:
 	int $48
 	ret
 
+	# ssize_t dirlen(int fd)
+	.global dirlen
+dirlen:
+	mov $15,%eax
+	int $48
+	ret
+
 	# ssize_t read(int fd, void* buffer, size_t n)
 	.global read
 read:
 	mov $12,%eax
+	int $48
+	ret
+
+	# ssize_t readdir(int fd, void* buffer)
+	.global readdir
+readdir:
+	mov $14,%eax
 	int $48
 	ret
 

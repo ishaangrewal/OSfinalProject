@@ -321,6 +321,38 @@ int seek(uint32_t fd, uint32_t offset) {
     gheith::current()->process->fd[fd]->offset = offset;
     return offset;
 }
+// read directory
+int readdir(int fd, char *buf) {
+    // check that fd is valid, is a directory, and is open
+    if (fd < 0 || fd > 9) {
+        return -1;
+    }
+    if ((gheith::current()->process->fd[fd] == nullptr || gheith::current()->process->fd[fd]->node == nullptr)) {
+        return -1;
+    }
+    if (gheith::current()->process->fd[fd]->node->is_dir() == false) {
+        return -1;
+    }
+    Shared<Node> node = gheith::current()->process->fd[fd]->node;
+    // read directory entries names
+    node->get_dir_entries(buf);
+    return 0;
+
+}
+int getDirEntriesLength(int fd) {
+    if (fd < 0 || fd > 9) {
+        return -1;
+    }
+    if ((gheith::current()->process->fd[fd] == nullptr || gheith::current()->process->fd[fd]->node == nullptr)) {
+        return -1;
+    }
+    if (gheith::current()->process->fd[fd]->node->is_dir() == false) {
+        return -1;
+    }
+    Shared<Node> node = gheith::current()->process->fd[fd]->node;
+    return node->get_length_of_dir_entries();
+}
+
 extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
     uint32_t* esp;
     esp = (uint32_t*)frame[3];
@@ -436,7 +468,12 @@ extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
         case 13:
             //seek
             return seek(esp[1], esp[2]);
-
+        case 14:
+            //readdir
+            return readdir(esp[1], (char*)esp[2]);
+        case 15:
+            //getDirEntriesLength
+            return getDirEntriesLength(esp[1]);
         default:
             Debug::panic("*** NOT IMPLEMENTED\n");
     }

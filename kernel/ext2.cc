@@ -77,6 +77,9 @@ Ext2::Ext2(Shared<Ide> ide): ide(ide), root(), ref_count(0) {
     //root = new Node(ide,2,blockSize);
 
     root = get_node(2);
+    current = root;
+    cwd = new char[100];
+    cwd[0] = '/';
 
     //root->show("root");
 
@@ -158,7 +161,7 @@ void Node::get_dir_entries(char *buffer) {
             delete[] name;
             offset += total_size;
         }
-    buffer[nameOffset - 1] = '\n';
+    buffer[nameOffset - 1] = '\0';
 }
 
 uint32_t Node::get_length_of_dir_entries() {

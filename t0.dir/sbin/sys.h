@@ -28,7 +28,7 @@ extern ssize_t len(int fd);
 /* returns number of bytes in the names of the files */
 extern ssize_t dirlen(int fd);
 
-extern int readdir(int fd, char* buff);
+extern int ls();
 
 
 
@@ -85,5 +85,9 @@ extern int fork();
 /* arg0 is the name of the program by convention */
 /* a nullptr indicates end of arguments */
 extern int execl(const char* path, const char* arg0, ...);
+
+extern int cd(const char *path);
+
+extern int pwd();
 
 #endif

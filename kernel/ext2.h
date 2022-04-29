@@ -220,6 +220,8 @@ class Ext2 {
 public:
     // The root directory for this file system
     Shared<Node> root;
+    Shared<Node> current;
+    char *cwd;
 private:
     Atomic<uint32_t> ref_count;
     uint32_t blockSize;

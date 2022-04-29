@@ -322,20 +322,15 @@ int seek(uint32_t fd, uint32_t offset) {
     return offset;
 }
 // read directory
-int readdir(int fd, char *buf) {
-    // check that fd is valid, is a directory, and is open
-    if (fd < 0 || fd > 9) {
-        return -1;
-    }
-    if ((gheith::current()->process->fd[fd] == nullptr || gheith::current()->process->fd[fd]->node == nullptr)) {
-        return -1;
-    }
-    if (gheith::current()->process->fd[fd]->node->is_dir() == false) {
-        return -1;
-    }
-    Shared<Node> node = gheith::current()->process->fd[fd]->node;
-    // read directory entries names
-    node->get_dir_entries(buf);
+int ls() {
+    //find size of current directory
+    uint32_t len = fs->current->get_length_of_dir_entries();
+    //allocate memory for directory entries
+    char* dir_entries = new char[len + 1];
+    //read directory entries
+    fs->current->get_dir_entries(dir_entries);
+    //print directory entries
+    Debug::printf("%s\n", dir_entries);
     return 0;
 
 }
@@ -353,6 +348,35 @@ int getDirEntriesLength(int fd) {
     return node->get_length_of_dir_entries();
 }
 
+int changeDir(const char* path) {
+    //get the current path
+    char *cwd = fs->cwd;
+    // append the new path to the current path
+    // get to the end of the current path
+    int i = 0;
+    while (cwd[i] != '\0') {
+        i++;
+    }
+    // append the new path
+    if (path[i-1] != '/') {
+        cwd[i] = '/';
+    }
+    int j = 0;
+    while (path[j] != '\0') {
+        cwd[i] = path[j];
+        i++;
+        j++;
+    }
+    cwd[i] = '\0';
+    fs->current = fs->find(fs->current, cwd);
+
+    return 0;
+}
+int pwd() {
+    char *cwd = fs->cwd;
+    Debug::printf("%s\n", cwd);
+    return 0;
+}
 extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
     uint32_t* esp;
     esp = (uint32_t*)frame[3];
@@ -470,10 +494,16 @@ extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
             return seek(esp[1], esp[2]);
         case 14:
             //readdir
-            return readdir(esp[1], (char*)esp[2]);
+            return ls();
         case 15:
             //getDirEntriesLength
             return getDirEntriesLength(esp[1]);
+        case 16:
+            //ls
+            return changeDir((char*)esp[1]);
+        case 17:
+            //pwd
+            return pwd();
         default:
             Debug::panic("*** NOT IMPLEMENTED\n");
     }

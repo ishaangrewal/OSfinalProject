@@ -113,9 +113,9 @@ read:
 	int $48
 	ret
 
-	# ssize_t readdir(int fd, void* buffer)
-	.global readdir
-readdir:
+	# ssize_t ls(void* buffer)
+	.global ls
+ls:
 	mov $14,%eax
 	int $48
 	ret
@@ -124,5 +124,19 @@ readdir:
 	.global seek
 seek:
 	mov $13,%eax
+	int $48
+	ret
+
+	# ssize_t cd(void* path)
+	.global cd
+cd:
+	mov $16,%eax
+	int $48
+	ret
+
+	# ssize_t pwd()
+	.global pwd
+pwd:
+	mov $17,%eax
 	int $48
 	ret

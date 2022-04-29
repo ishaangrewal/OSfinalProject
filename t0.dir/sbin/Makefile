@@ -1,4 +1,4 @@
-UTILS = init shell echo cat grep wc ls
+UTILS = init shell echo cat grep wc ls cd
 
 CFLAGS = -std=c99 -m32 -nostdlib -g -O2 -Wall -Werror
 

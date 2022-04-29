@@ -45,6 +45,9 @@ pipelining options:
 int main(int argc, char** argv) {
     printf("*** - - - Welcome to our shell\n");
     printf("*** - - - Good Luck\n");
+    char** file = malloc(4);
+    file[0] = malloc(100);
+    file[0] = "/";
     while (1) // replace with shell exit check
     {
         int id = fork();
@@ -108,7 +111,7 @@ int main(int argc, char** argv) {
             printf("fork failed");
         } else if (id == 0) {
             // ls
-            int rc = execl("/sbin/ls","ls", "/etc", 0);
+            int rc = execl("/sbin/ls","ls", *file, 0);
             printf("*** execl failed, rc = %d\n",rc);
             exit(0);
         } else {
@@ -116,6 +119,23 @@ int main(int argc, char** argv) {
             uint32_t status = 42;
             wait(id,&status);
             printf("*** back to shell\n");
+        }
+        id = fork();
+        if (id < 0) {
+            printf("fork failed");
+        } else if (id == 0) {
+            // cd
+            memcpy(file[0], "/data", 5);
+            int rc = execl("/sbin/cd","cd", file, "etc", 0);
+            printf("*** execl failed, rc = %d\n",rc);
+            exit(0);
+        } else {
+            /* parent */
+
+            uint32_t status = 42;
+            wait(id,&status);
+            printf("*** back to shell\n");
+            printf("file: %s\n",*file);
         }
         shutdown();
     }

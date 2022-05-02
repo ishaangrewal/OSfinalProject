@@ -195,6 +195,8 @@ int wait(int id, uint32_t *status) {
     }
     //Debug::printf("*** Test4!\n");
     *status = cur_process->cp[id - 20]->future->get();
+    cur_process->cp[id - 20] = nullptr;
+
     //Debug::printf("*** Test5!\n");
     return 0;
 }
@@ -354,7 +356,10 @@ int changeDir(const char* path) {
 
     if (path[0] == '/') {
         fs->current = fs->root;
-        fs->cwd = "/";
+        fs->cwd[0] = '/';
+        for (uint32_t i = 1; i < 100; i++) {
+            fs->cwd[i] = '\0';
+        }
         return 0;
     }
 
@@ -370,13 +375,10 @@ int changeDir(const char* path) {
             i++;
         }
         if (lastBackSlash == 0) {
-            fs->cwd = "/";
-        } else {
-            for (size_t i = lastBackSlash; i < 100; i++)
-            {
-                fs->cwd[i] = '\0';
-            }
-            
+            fs->cwd[0] = '/';
+        }
+        for (size_t i = lastBackSlash + 1; i < 100; i++) {
+            fs->cwd[i] = '\0';
         }
         return 0;
 

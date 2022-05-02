@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
         shellHandler(input);
         input = "pwd";
         shellHandler(input);
-        input = "grep /etc/data.txt";
+        input = "grep is /etc/data.txt";
         shellHandler(input);
         input = "wc /etc/data.txt";
         shellHandler(input);

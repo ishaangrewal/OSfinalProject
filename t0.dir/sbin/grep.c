@@ -23,12 +23,37 @@ int isSubstring(char *sub, char *str, int len) {
 
 int main(int argc, char** argv) {
     printf("*** grep implementation\n");
-    //get the string to search for from the command line
-    char* search_string = argv[1];
-    // get the file to search from the command line
-    char* file_name = argv[2];
+    char *input = argv[1];
+    //find the first word in the input
+    int i = 0;
+    while (input[i] != ' ' && input[i] != '\0') {
+        i++;
+    }
+    char *first_word = malloc(i + 1);
+    int j = 0;
+    while (j < i) {
+        first_word[j] = input[j];
+        j++;
+    }
+    i++;
+    first_word[j] = '\0';
+    printf("first_word: %s\n", first_word);
+    //find the second word in the input
+    int k = 0;
+    while (input[i + k] != ' ' && input[i + k] != '\0') {
+        // printf("k: %d, input = %c\n", k);
+        k++;
+    }
+    char *second_word = malloc(k + 1);
+    int l = 0;
+    while (l < k) {
+        second_word[l] = input[i + l];
+        l++;
+    }
+    second_word[l] = '\0';
+    printf("second_word: %s\n", second_word);
     // open the file
-    int fd = open(file_name, 0);
+    int fd = open(second_word, 0);
     // get the length of the file
     int file_length = len(fd);
     // allocate memory for the file
@@ -38,16 +63,16 @@ int main(int argc, char** argv) {
     // close the file
     close(fd);
     // loop through the file words
-    int j = 0;
-    for (int i = 0; i < file_length; i+=(j + 1)) {
+    int m = 0;
+    for (int n = 0; n < file_length; n+=(m + 1)) {
         // get the length of the word
-        j = 0;
-        while (i+j < file_length && (file_contents[i+j] != ' ' && file_contents[i+j] != '\n')) {
-            j++;
+        m = 0;
+        while (n+m < file_length && (file_contents[n+m] != ' ' && file_contents[n+m] != '\n')) {
+            m++;
         }
         //check if the search string is anywhere in the word and if so print the word
-        if (isSubstring(search_string, file_contents+i, j)) {
-            write(1, file_contents+i, j);
+        if (isSubstring(first_word, file_contents+n, m)) {
+            write(1, file_contents+n, m);
             write(1, "\n", 1);
         }
 

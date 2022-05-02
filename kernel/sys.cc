@@ -293,7 +293,7 @@ int open(const char* fn, int flags) {
     if ((marker != nullptr)) {
         return -1;
     }
-    Shared<Node> node = fs->find(fs->root, fn);
+    Shared<Node> node = fs->find(fs->current, fn);
     if (node == nullptr) {
         return -1;
     }

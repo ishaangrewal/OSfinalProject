@@ -10,11 +10,17 @@
 > *** init
 > *** fd = 3
 > *** len = 43
-9,12c7,53
+9,18c7,21
 < *** back from wait 0
 < *** ls implementation
 < *** back from wait 0
 < *** cd implementation
+< *** back from wait 0
+< *** back from wait 0
+< *** echo implementation
+< *** back from wait 0
+< *** cat implementation
+< *** this is nice
 ---
 > *** close = 0
 > *** fd = 3
@@ -31,7 +37,13 @@
 > *** argv[1]=a
 > *** argv[2]=b
 > *** argv[3]=c
-> *** we can read and write
+20,24c23,53
+< *** back from wait 0
+< *** ls implementation
+< *** back from wait 0
+< *** cd implementation
+< *** back from wait 0
+---
 > *** back from wait 666
 > *** Don't panic
 > *** 

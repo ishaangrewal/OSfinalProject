@@ -2,12 +2,11 @@
 
 
 iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+07F8F290+07EEF290 CA00
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...
-                                                                               
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..xxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Booting from Hard Disk..xxxxxxxxxxxxxxxxxxxxxxxx.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | What just happened? Why am I here?
 | Discovering my identity and features
 |     CPUID: AuthenticAMD
@@ -23,25 +22,25 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | physical range 0x600000 0x7fd0000
 | pitInit freq 1000Hz
 | pitInit divider 59659
-| APIT running at 1000085343Hz
-| APIT counter=1000085 for 1000Hz
+| APIT running at 1000059744Hz
+| APIT counter=1000059 for 1000Hz
 | initialize 1
 | reset 1
 |      eip:0x8000
 | initialize 2
 | reset 2
 |      eip:0x8000
+| initialize 3
 | initializing TSS:ss0 for 1
 | initializing TSS:ss0 for 2
 | 2 enabling interrupts, I'm scared
 | 1 enabling interrupts, I'm scared
-| initialize 3
 | reset 3
 |      eip:0x8000
-| initializing TSS:ss0 for 3
-| 3 enabling interrupts, I'm scared
 | initializing TSS:ss0 for 0
 | 0 enabling interrupts, I'm scared
+| initializing TSS:ss0 for 3
+| 3 enabling interrupts, I'm scared
 mounting drive 1
 checking /
 directory / is ok
@@ -67,5 +66,27 @@ pwd implementation
 . .. lost+found data etc fortunes goodbye hello sbin
 *** back from wait 0
 *** cd implementation
-Usage: cd *** can't handle page fault at 6374652f
-| processor 2 halting
+Usage: cd etc
+new_dir_name: etc
+*** back from wait 0
+pwd implementation
+/etc
+*** back from wait 0
+*** echo implementation
+data.txt
+*** back from wait 0
+*** cat implementation
+*** this is nice
+*** we can read and write
+*** back from wait 0
+*** ls implementation
+. .. data.txt panic.txt
+*** back from wait 0
+*** cd implementation
+Usage: cd ..
+new_dir_name: ..
+*** back from wait 0
+fork failed
+fork failed
+fork failed
+core 0 requested shutdown

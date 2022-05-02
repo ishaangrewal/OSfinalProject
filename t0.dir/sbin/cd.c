@@ -16,9 +16,9 @@
 
 int main(int argc, char** argv) {
     printf("*** cd implementation\n");
-    printf("Usage: cd %s\n", ((char**)argv[1])[0]);
+    printf("Usage: cd %s\n", argv[1]);
     //get the new directory name from the command line
-    char *new_dir_name = argv[2];
+    char *new_dir_name = argv[1];
     printf("new_dir_name: %s\n", new_dir_name);
     cd(new_dir_name);
     return 0;

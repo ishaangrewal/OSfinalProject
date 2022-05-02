@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
         shellHandler(input);
         input = "ls";
         shellHandler(input);
-        input = "cd /etc/";
+        input = "cd etc";
         shellHandler(input);
         input = "pwd";
         shellHandler(input);

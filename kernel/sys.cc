@@ -351,6 +351,41 @@ int getDirEntriesLength(int fd) {
 int changeDir(const char* path) {
     //get the current path
     char *cwd = fs->cwd;
+
+    if (path[0] == '/') {
+        fs->current = fs->root;
+        fs->cwd = "/";
+        return 0;
+    }
+
+    if (path[0] == '.' && path[1] == '.') {
+        fs->current = fs->find(fs->current, "..");
+        // get index of the last occurrence of backslash using a while loop
+        int i = 0;
+        uint32_t lastBackSlash = 0;
+        while (fs->cwd[i] != '\0') {
+            if (fs->cwd[i] == '/') {
+                lastBackSlash = i;
+            }
+            i++;
+        }
+        if (lastBackSlash == 0) {
+            fs->cwd = "/";
+        } else {
+            for (size_t i = lastBackSlash; i < 100; i++)
+            {
+                fs->cwd[i] = '\0';
+            }
+            
+        }
+        return 0;
+
+        
+    } else if (path[0] == '.') {
+        return 0;
+    }
+
+    
     // append the new path to the current path
     // get to the end of the current path
     int i = 0;

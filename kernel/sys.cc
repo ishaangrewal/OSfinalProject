@@ -174,7 +174,8 @@ int execl(char* path, char** argv, uint32_t length) {
     *userEsp = length;
     Shared<Node> n = fs->find(fs->root, path);
     if (n == nullptr) {
-        Debug::panic("*** node is nullptr\n");
+
+        Debug::panic("*** node is nullptr %s\n", path);
     }
     switchToUser(ELF::load(n),(uint32_t)userEsp,0);
     Debug::panic("*** passed switch\n");
@@ -195,6 +196,8 @@ int wait(int id, uint32_t *status) {
     }
     //Debug::printf("*** Test4!\n");
     *status = cur_process->cp[id - 20]->future->get();
+    cur_process->cp[id - 20] = nullptr;
+
     //Debug::printf("*** Test5!\n");
     return 0;
 }
@@ -351,6 +354,41 @@ int getDirEntriesLength(int fd) {
 int changeDir(const char* path) {
     //get the current path
     char *cwd = fs->cwd;
+
+    if (path[0] == '/') {
+        fs->current = fs->root;
+        fs->cwd[0] = '/';
+        for (uint32_t i = 1; i < 100; i++) {
+            fs->cwd[i] = '\0';
+        }
+        return 0;
+    }
+
+    if (path[0] == '.' && path[1] == '.') {
+        fs->current = fs->find(fs->current, "..");
+        // get index of the last occurrence of backslash using a while loop
+        int i = 0;
+        uint32_t lastBackSlash = 0;
+        while (fs->cwd[i] != '\0') {
+            if (fs->cwd[i] == '/') {
+                lastBackSlash = i;
+            }
+            i++;
+        }
+        if (lastBackSlash == 0) {
+            fs->cwd[0] = '/';
+        }
+        for (size_t i = lastBackSlash + 1; i < 100; i++) {
+            fs->cwd[i] = '\0';
+        }
+        return 0;
+
+        
+    } else if (path[0] == '.') {
+        return 0;
+    }
+
+    
     // append the new path to the current path
     // get to the end of the current path
     int i = 0;
@@ -377,6 +415,7 @@ int pwd() {
     Debug::printf("%s\n", cwd);
     return 0;
 }
+
 extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
     uint32_t* esp;
     esp = (uint32_t*)frame[3];

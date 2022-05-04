@@ -222,5 +222,12 @@ sysHandler_:
         call sysHandler
         add $8,%esp
         iret
+/*
+    .global keyBoardHandler_
+keyBoardHandler_:
+    .extern keyBoardHandler
+    call keyBoardHandler
+    iret
+*/
 
 

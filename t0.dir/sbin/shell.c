@@ -78,10 +78,14 @@ int shellHandler(char* input) {
             execl("/sbin/locate", "locate", input+7, 0);
         } else if (input[0] == 'e' && input[1] == 'c' && input[2] == 'h' && input[3] == 'o') {
             execl("/sbin/echo", "echo", input + 5, 0);
+        } 
+        else if (input[0] == 'e' && input[1] == 'x' && input[2] == 'e' && input[3] == 'c') {
+            execl("/sbin/exec", "exec", input + 5, 0);
         } else {
             printf("*** invalid command\n");
         }
-    } else {
+    }
+     else {
         /* parent */
         uint32_t status = 42;
         wait(id,&status);
@@ -122,6 +126,8 @@ int main(int argc, char** argv) {
         input = "grep is /etc/data.txt";
         shellHandler(input);
         input = "wc /etc/data.txt";
+        shellHandler(input);
+        input = "exec ls";
         shellHandler(input);
 
 

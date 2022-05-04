@@ -174,7 +174,8 @@ int execl(char* path, char** argv, uint32_t length) {
     *userEsp = length;
     Shared<Node> n = fs->find(fs->root, path);
     if (n == nullptr) {
-        Debug::panic("*** node is nullptr\n");
+
+        Debug::panic("*** node is nullptr %s\n", path);
     }
     switchToUser(ELF::load(n),(uint32_t)userEsp,0);
     Debug::panic("*** passed switch\n");
@@ -414,6 +415,7 @@ int pwd() {
     Debug::printf("%s\n", cwd);
     return 0;
 }
+
 extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
     uint32_t* esp;
     esp = (uint32_t*)frame[3];

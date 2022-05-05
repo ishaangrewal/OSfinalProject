@@ -51,7 +51,7 @@ pipelining options:
 */
 
 //function to handle the keyboard input for the shell and run the commands
-int shellHandler(char* input) {
+int mainShellHandler(char* input) {
     int id = fork();
     if (id < 0) {
         printf("fork failed\n");
@@ -66,20 +66,20 @@ int shellHandler(char* input) {
             execl("/sbin/cat", "cat", input+4, 0);
         } else if (input[0] == 'g' && input[1] == 'r' && input[2] == 'e' && input[3] == 'p') {
             execl("/sbin/grep", "grep", input+5, 0);
-        } else if (input[0] == 's' && input[1] == 'o' && input[2] == 'r' && input[3] == 't') {
-            execl("/sbin/sort", "sort", input+5, 0);
         } else if (input[0] == 'w' && input[1] == 'c') {
             execl("/sbin/wc", "wc", input+3, 0);
         } else if (input[0] == 'l' && input[1] == 's') {
-            execl("/sbin/ls", "ls", 0);
+            if (input[3] == '|') {
+                printf("ls pipe with command: %s\n", input+5);
+                execl("/sbin/ls", "ls", input+5, 0);
+            } else {
+                execl("/sbin/ls", "ls", 0);
+            }
         } else if (input[0] == 'p' && input[1] == 'w' && input[2] == 'd') {
-            execl("/sbin/pwd", "pwd", 0);
-        } else if (input[0] == 'l' && input[1] == 'o' && input[2] == 'c' && input[3] == 'a' && input[4] == 't' && input[5] == 'e') {
-            execl("/sbin/locate", "locate", input+7, 0);
+            execl("/sbin/pwd", "pwd", input + 4, 0);
         } else if (input[0] == 'e' && input[1] == 'c' && input[2] == 'h' && input[3] == 'o') {
             execl("/sbin/echo", "echo", input + 5, 0);
-        } 
-        else if (input[0] == 'e' && input[1] == 'x' && input[2] == 'e' && input[3] == 'c') {
+        } else if (input[0] == 'e' && input[1] == 'x' && input[2] == 'e' && input[3] == 'c') {
             execl("/sbin/exec", "exec", input + 5, 0);
         } else {
             printf("*** invalid command\n");
@@ -102,33 +102,39 @@ int main(int argc, char** argv) {
     {
         char *input = malloc(100);
         input = "pwd";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "echo /etc/data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "cat /etc/data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "ls";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "cd etc";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "pwd";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "echo data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "cat data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "ls";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "cd ..";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "pwd";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "grep is /etc/data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "wc /etc/data.txt";
-        shellHandler(input);
+        mainShellHandler(input);
         input = "exec ls";
-        shellHandler(input);
+        mainShellHandler(input);
+        input = "exec cd etc";
+        mainShellHandler(input);
+        input = "ls | cat";
+        mainShellHandler(input);
+        input = "ls | echo";
+        mainShellHandler(input);
 
 
 

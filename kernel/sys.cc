@@ -325,7 +325,7 @@ int seek(uint32_t fd, uint32_t offset) {
     return offset;
 }
 // read directory
-int ls() {
+int ls(char *buffer) {
     //find size of current directory
     uint32_t len = fs->current->get_length_of_dir_entries();
     //allocate memory for directory entries
@@ -333,7 +333,7 @@ int ls() {
     //read directory entries
     fs->current->get_dir_entries(dir_entries);
     //print directory entries
-    Debug::printf("%s\n", dir_entries);
+    memcpy(buffer, dir_entries, len);
     return 0;
 
 }
@@ -533,7 +533,7 @@ extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
             return seek(esp[1], esp[2]);
         case 14:
             //readdir
-            return ls();
+            return ls((char*)esp[1]);
         case 15:
             //getDirEntriesLength
             return getDirEntriesLength(esp[1]);

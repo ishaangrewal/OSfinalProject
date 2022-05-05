@@ -1,4 +1,4 @@
-UTILS = init shell echo cat grep wc ls cd pwd exec
+UTILS = init shell echo cat grep wc ls cd pwd exec shellHandler
 
 CFLAGS = -std=c99 -m32 -nostdlib -g -O2 -Wall -Werror
 

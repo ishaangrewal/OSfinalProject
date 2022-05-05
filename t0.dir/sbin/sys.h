@@ -28,7 +28,7 @@ extern ssize_t len(int fd);
 /* returns number of bytes in the names of the files */
 extern ssize_t dirlen(int fd);
 
-extern int ls();
+extern int ls(char *buff);
 
 
 

@@ -1,4 +1,16 @@
 #include "libc.h"
+//implement strcmp
+int strcmp(const char *s1, const char *s2) {
+    while (*s1 == *s2) {
+        if (*s1 == '\0') {
+            return 0;
+        }
+        s1++;
+        s2++;
+    }
+    return *s1 - *s2;
+}
+
 int main(int argc, char** argv) {
     printf("*** cat implementation\n");
     // get string from command line
@@ -17,6 +29,15 @@ int main(int argc, char** argv) {
         }
         file_name[j] = '\0';
         // open the file
+        //if the file name is ., .., or lost+found then skip it
+        if (strcmp(file_name, ".") == 0 || strcmp(file_name, "..") == 0 || strcmp(file_name, "lost+found") == 0) {
+            if (file_names[i+j] == ' ') {
+                i += j + 1;
+            } else {
+                i += j;
+            }
+            continue;
+        }
         int fd = open(file_name, 0);
         // get the length of the file
         int file_length = len(fd);

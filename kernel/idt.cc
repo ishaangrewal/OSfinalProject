@@ -11,6 +11,11 @@ void IDT::init(void) {
 }
 
 void IDT::interrupt(int index, uint32_t handler) {
+    uint32_t i = 0;
+    while (idt[i] != 0) {
+        i++;
+    }
+    Debug::printf("end of interrupt %d\n", i);
     int i0 = 2 * index;
     int i1 = i0 + 1;
 

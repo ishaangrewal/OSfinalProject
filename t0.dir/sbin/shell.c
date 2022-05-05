@@ -100,6 +100,7 @@ int main(int argc, char** argv) {
     
     while (1) // replace with shell exit check
     {
+        /*
         char *input = malloc(100);
         input = "pwd";
         mainShellHandler(input);
@@ -135,7 +136,7 @@ int main(int argc, char** argv) {
         mainShellHandler(input);
         input = "ls | echo";
         mainShellHandler(input);
-
+        */
 
 
         // int id = fork();

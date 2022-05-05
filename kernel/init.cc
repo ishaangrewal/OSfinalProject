@@ -16,6 +16,7 @@
 #include "stdint.h"
 #include "tss.h"
 #include "sys.h"
+#include "keyboard.h"
 
 struct Stack {
     static constexpr int BYTES = 4096;
@@ -120,7 +121,6 @@ extern "C" void kernelInit(void) {
         IDT::init();
         Pit::calibrate(1000);
 
-        KeyBoard::init();
 
         SMP::running.fetch_add(1);
 
@@ -145,7 +145,7 @@ extern "C" void kernelInit(void) {
 
     // Initialize the PIT
     Pit::init();
-
+    KeyBoard::init();
     auto id = SMP::me();
 
     Debug::printf("| initializing TSS:ss0 for %d\n",id);
@@ -154,7 +154,6 @@ extern "C" void kernelInit(void) {
 
     Debug::printf("| %d enabling interrupts, I'm scared\n",id);
     sti();
-
     auto myOrder = howManyAreHere.add_fetch(1);
     if (myOrder == kConfig.totalProcs) {
         thread([] {

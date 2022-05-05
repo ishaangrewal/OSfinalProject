@@ -3,7 +3,7 @@
 #include "debug.h"
 #include "machine.h"
 #include "smp.h"
-#include "idt.h"
+#include "keyboard.h"
 
 extern uint32_t keyBoardHandler_;
 uint32_t valueFromPort;
@@ -16,9 +16,10 @@ void KeyBoard::init(void) {
     //inb reads one byte from port
     //inb(0x21, 0xfd);
     //valueFromPort = inb(0x21);
-    
-    valueFromPort = inb(0x60);
-    IDT::interrupt(71, keyBoardHandler_);
+    Debug::printf("*** in keyboard init!\n");
+    outb(0x21, 0xfd);
+    //valueFromPort = inb(0x60);
+    IDT::interrupt(9, (uint32_t)&keyBoardHandler_);
 }
 //registers as interrupt in interrupt handler
 //check status of keyboard if changed, read in info and display
@@ -26,6 +27,8 @@ void KeyBoard::init(void) {
 //use inb to read 0x64 see if its changed 
 //call init in kernel or config 
 extern "C" void keyBoardHandler() {
+    Debug::printf("*** in keyboard!\n");
+    return;
     int full = inb(0x64) & 0x1;
     if (full) {
         int clearInputBuffer = inb(0x64) & 0x10;

@@ -225,6 +225,7 @@ int main(int argc, char** argv) {
         //     printf("*** back to shell\n");
         //     printf("file: %s\n",*file);
         // }
+        while(1);
         shutdown();
     }
 }

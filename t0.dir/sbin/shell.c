@@ -177,7 +177,7 @@ int mainShellHandler(char* input) {
         /* parent */
         uint32_t status = 42;
         wait(id,&status);
-        printf("*** back from wait %ld\n",status);
+        // printf("*** back from wait %ld\n",status);
     }
     return 0;
 }

@@ -12,7 +12,7 @@ int strcmp(const char *s1, const char *s2) {
 }
 
 int main(int argc, char** argv) {
-    printf("*** cat implementation\n");
+    // printf("*** cat implementation\n");
     // get string from command line
     char* file_names = argv[1];
     // for each filename in file_names open the file and print it to the console

@@ -76,7 +76,7 @@ char scanCodeToLetter(uint32_t code) {
         return '/';
     } else if (code == 0x34) {
         return '.';
-    } else if (code == 0x43) {
+    } else if (code == 0x2b) {
         return '|';
     }
      else {
@@ -114,7 +114,8 @@ extern "C" void keyBoardHandler() {
     //outb(0x21, 0x64);
     //outputBit = readFromCommandPort & 0x1;
     valueFromPort = inb(0x60);
-
+    // Debug::printf("%x\n",valueFromPort);
+    // while(1);
    // Shared<PCB> cur = gheith::current()->process;
     char letter = scanCodeToLetter(valueFromPort);
     if (letter != 0) {

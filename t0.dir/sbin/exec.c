@@ -5,7 +5,7 @@ int main(int argc, char **argv)
     char* path = malloc(100);
     char* command = malloc(100);
     memcpy(path, "/sbin/", 6);
-    printf("exec implementation\n");
+    // printf("exec implementation\n");
     uint32_t argNum = 0;
     //uint32_t argNumCounter = 0;
     uint32_t input = 6;
@@ -19,9 +19,9 @@ int main(int argc, char **argv)
     }
     path[input] = '\0';
     command[argNum] = '\0';
-    printf("Path: %s\n", (char*) path);
-    printf("Arg Num: %ld\n", argNum);
-    printf("Command: %s\n", (char *) command);
+    // printf("Path: %s\n", (char*) path);
+    // printf("Arg Num: %ld\n", argNum);
+    // printf("Command: %s\n", (char *) command);
 
     if ((char) arg[argNum] == '\0') {
         return execl(path, command, 0);

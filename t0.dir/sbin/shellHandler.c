@@ -1,7 +1,7 @@
 #include "libc.h"
 
 int main(int argc, char **argv) {
-    printf("*** other shellHandler\n");
+    // printf("*** other shellHandler\n");
     char *input = argv[1];
     int id = fork();
     if (id < 0) {
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
         /* parent */
         uint32_t status = 42;
         wait(id,&status);
-        printf("*** back from wait %ld\n",status);
+        // printf("*** back from wait %ld\n",status);
     }
     return 0;
 }

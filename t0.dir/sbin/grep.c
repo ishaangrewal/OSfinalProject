@@ -22,7 +22,7 @@ int isSubstring(char *sub, char *str, int len) {
 }
 
 int main(int argc, char** argv) {
-    printf("*** grep implementation\n");
+    // printf("*** grep implementation\n");
     char *input = argv[1];
     //find the first word in the input
     int i = 0;
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     }
     i++;
     first_word[j] = '\0';
-    printf("first_word: %s\n", first_word);
+    // printf("first_word: %s\n", first_word);
     //find the second word in the input
     int k = 0;
     while (input[i + k] != ' ' && input[i + k] != '\0') {
@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
         l++;
     }
     second_word[l] = '\0';
-    printf("second_word: %s\n", second_word);
+    // printf("second_word: %s\n", second_word);
     // open the file
     int fd = open(second_word, 0);
     // get the length of the file

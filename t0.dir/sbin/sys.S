@@ -140,3 +140,21 @@ pwd:
 	mov $17,%eax
 	int $48
 	ret
+
+	.global getCommand
+getCommand:
+	mov $18,%eax
+	int $48
+	ret
+
+	.global done
+done:
+	mov $19,%eax
+	int $48
+	ret
+
+	.global setDone
+setDone:
+	mov $20,%eax
+	int $48
+	ret

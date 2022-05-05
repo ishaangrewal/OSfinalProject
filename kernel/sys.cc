@@ -10,6 +10,7 @@
 #include "physmem.h"
 #include "libk.h"
 #include "elf.h"
+#include "keyboard.h"
 
 auto d = Shared<Ide>::make(1);
 auto fs = Shared<Ext2>::make(d);
@@ -416,6 +417,10 @@ int pwd() {
     return 0;
 }
 
+int getCommand() {
+    return (int)buf;
+}
+
 extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
     uint32_t* esp;
     esp = (uint32_t*)frame[3];
@@ -543,6 +548,17 @@ extern "C" int sysHandler(uint32_t eax, uint32_t *frame) {
         case 17:
             //pwd
             return pwd();
+        case 18:
+            return getCommand();
+        case 19:
+            return done;
+        case 20:
+            for (uint32_t i = 0; i < bufSize; i++) {
+               buf[i] = '\0';
+            }
+            bufSize = 0;
+            done = false;
+            return 0;
         default:
             Debug::panic("*** NOT IMPLEMENTED\n");
     }

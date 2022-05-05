@@ -3,11 +3,14 @@
 
 #include "sys.h"
 
+
 #define MISSING() do { \
     putstr("\n*** missing code at"); \
     putstr(__FILE__); \
     putdec(__LINE__); \
 } while (0)
+
+
 
 extern void* malloc(size_t size);
 extern void free(void*);

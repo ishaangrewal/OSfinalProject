@@ -4,12 +4,16 @@
 #include "machine.h"
 #include "smp.h"
 #include "keyboard.h"
+#include "process.h"
 
 extern uint32_t keyBoardHandler_;
 uint8_t readFromCommandPort;
 uint32_t inputBit;
 uint32_t outputBit;
 uint32_t valueFromPort;
+bool done = false;
+char* buf = new char[50];
+uint32_t bufSize = 0;
 
 char scanCodeToLetter(uint32_t code) {
     if (code == 0x1e) {
@@ -68,12 +72,20 @@ char scanCodeToLetter(uint32_t code) {
         return '\n';
     } else if (code == 0x39) {
         return ' ';
-    } else {
+    } else if (code == 0x35) {
+        return '/';
+    } else if (code == 0x34) {
+        return '.';
+    } else if (code == 0x43) {
+        return '|';
+    }
+     else {
         return 0;
     }   
 }
 
 void KeyBoard::init(void) {
+    done = false;
     //port, byte 
     //index 8 or 9 
     //map scan code
@@ -102,10 +114,28 @@ extern "C" void keyBoardHandler() {
     //outb(0x21, 0x64);
     //outputBit = readFromCommandPort & 0x1;
     valueFromPort = inb(0x60);
-    //Debug::printf("value from port %d\n", valueFromPort);
+
+   // Shared<PCB> cur = gheith::current()->process;
     char letter = scanCodeToLetter(valueFromPort);
     if (letter != 0) {
         Debug::printf("%c", letter);
+        if (letter != '\n') {
+            // cur->input[cur->inp_size] = letter;
+            // cur->inp_size++;
+            buf[bufSize] = letter;
+            bufSize++;
+
+        } else {
+            //cur->input[cur->inp_size] = '\0';
+            //cur->done = true;
+            // for (uint32_t i = 0; i < cur->inp_size; i++) {
+            //     cur->input[i] = '\0';
+            // }
+            // cur->inp_size = 0;
+            // cur->done = false;
+            buf[bufSize] = '\0';
+            done = true;
+        }
     }
     outb(0x20, 0x20);
     

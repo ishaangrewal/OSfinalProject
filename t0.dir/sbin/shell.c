@@ -1,4 +1,8 @@
 #include "libc.h"
+#include <stdbool.h>
+
+
+
 /*
 command ideas:
 cat
@@ -59,7 +63,91 @@ int mainShellHandler(char* input) {
     } else if (id == 0) {
         /* child */
         // execl each command based on the input
-        if (input[0] == 'c' && input[1] == 'd') {
+        if (input[0] == 'd' && input[1] == 'e' && input[2] == 'm' && input[3] == 'o') {
+            char* input2 = malloc(100);
+            input2 = "pwd";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+            }
+            input2 = "echo /etc/data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "cat /etc/data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "ls";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "cd etc";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "pwd";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "echo data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "cat data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "ls";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "cd ..";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "pwd";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "grep is /etc/data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "wc /etc/data.txt";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "exec ls";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "exec cd etc";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "ls | cat";
+            mainShellHandler(input2);
+            for (int i = 0; i < 100000000; i++) {
+
+            }
+            input2 = "ls | echo";
+            mainShellHandler(input2);
+        }
+        else if (input[0] == 'c' && input[1] == 'd') {
             execl("/sbin/cd", "cd", input+3, 0);
         } else if (input[0] == 'c' && input[1] == 'a' && input[2] == 't') {
             // how to find number of arguments
@@ -97,9 +185,18 @@ int mainShellHandler(char* input) {
 int main(int argc, char** argv) {
     printf("*** - - - Welcome to our shell\n");
     printf("*** - - - Good Luck\n");
+    char* input = malloc(100);
     
     while (1) // replace with shell exit check
     {
+        while (!done()) {
+            input = (char*)getCommand();
+        }
+        input = (char*)getCommand();
+        //printf("*** input is %s\n", input);
+        mainShellHandler(input);
+        setDone();
+        input = "\0";
         /*
         char *input = malloc(100);
         input = "pwd";
@@ -137,7 +234,6 @@ int main(int argc, char** argv) {
         input = "ls | echo";
         mainShellHandler(input);
         */
-
 
         // int id = fork();
         // if (id < 0) {
@@ -226,7 +322,7 @@ int main(int argc, char** argv) {
         //     printf("*** back to shell\n");
         //     printf("file: %s\n",*file);
         // }
-        while(1);
-        shutdown();
+        //while(1);
+        //shutdown();
     }
 }

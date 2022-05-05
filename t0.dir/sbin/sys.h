@@ -90,4 +90,10 @@ extern int cd(const char *path);
 
 extern int pwd();
 
+extern int getCommand();
+
+extern int done();
+
+extern int setDone();
+
 #endif

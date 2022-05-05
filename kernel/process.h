@@ -16,6 +16,9 @@ struct FileDescriptor {
 
 struct PCB
 {
+    char* input;
+    uint32_t inp_size = 0;
+    bool done = false;
     uint32_t pid;
     Shared<Future<uint32_t>> future;
     Shared<FileDescriptor> fd[10];
@@ -23,6 +26,7 @@ struct PCB
     Shared<Semaphore> sp[10];
     Atomic<uint32_t> ref_count = 0;
     PCB() {
+        input = new char[50];
         for(int i = 0; i < 10; i++) {
             cp[i] = Shared<PCB>();
             if (i == 0 || i == 1 || i == 2) {

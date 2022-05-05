@@ -222,6 +222,18 @@ sysHandler_:
         call sysHandler
         add $8,%esp
         iret
+
+    .extern keyBoardHandler
+    .global keyBoardHandler_
+    //registering asm w keyboard handler
+keyBoardHandler_:
+    // TODO: XMM, MMX, FP, ...
+    pusha
+    push %esp
+    call keyBoardHandler
+    pop %esp
+    popa
+    iret
 /*
     .global keyBoardHandler_
 keyBoardHandler_:

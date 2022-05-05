@@ -120,6 +120,8 @@ extern "C" void kernelInit(void) {
         IDT::init();
         Pit::calibrate(1000);
 
+        KeyBoard::init();
+
         SMP::running.fetch_add(1);
 
         // The reset EIP has to be

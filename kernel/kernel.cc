@@ -6,6 +6,9 @@
 #include "libk.h"
 #include "config.h"
 
+//place interrupt into idt 
+//telling computer what to do when button is pushed 
+
 Shared<Node> checkFile(const char* name, Shared<Node> node) {
     //CHECK(node != nullptr);
     //CHECK(node->is_file());
@@ -56,6 +59,7 @@ void kernelMain(void) {
     userEsp[0] = 1;
 
     Debug::printf("user esp %x\n",userEsp);
+
     // Current state:
     //     - %eip points somewhere in the middle of kernelMain
     //     - %cs contains kernelCS (CPL = 0)
